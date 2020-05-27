@@ -4,6 +4,9 @@
       <title>电商主页</title>
       <script type="text/javascript" src = "initData.js"></script>
       <link rel = "stylesheet" type = "text/css" href = "主页.css" />
+      <link rel = "stylesheet" type = "text/css" href = "goods.css" />
+      <link rel = "stylesheet" type = "text/css" href = "shoppingCar.css" />
+      <link rel = "stylesheet" type = "text/css" href = "myBill.css" />
     </head>
     
     <body >
@@ -13,18 +16,55 @@
         </div>
         <div id="body">
           <div id="shoppingCar">
-
+            <div id="myshoppingcar">我的购物车 <img src="../image/购物车空.png" align="top" id="购物车"></div>
           </div>
   
           <div id="goods">
+
+            <div id="沙发" class="items"  price="3500">
+              <img src="../image/沙发.png">
+              <div class="价格" >价格：3500元</div>
+              <button class="ButtonOfAddTOShoppingCar" style="cursor: pointer" onclick="addTOShoppingCar()">加入购物车</button>
+            </div>
+
+            <div id="床头柜" class="items"  price="1500">
+              <img src="../image/床头柜.png">
+              <div class="价格" >价格：1500元</div>
+              <button class="ButtonOfAddTOShoppingCar" style="cursor: pointer" onclick="addTOShoppingCar()">加入购物车</button>
+            </div>
+
+            <div id="游戏手柄" class="items" price="200">
+              <img src="../image/游戏手柄.png">
+              <div class="价格" >价格：200元</div>
+              <button class="ButtonOfAddTOShoppingCar" style="cursor: pointer" onclick="addTOShoppingCar()">加入购物车</button>
+            </div>
   
+            <div id="洗衣机" class="items" price="4000">
+              <img src="../image/洗衣机.png">
+              <div class="价格" >价格：4000元</div>
+              <button class="ButtonOfAddTOShoppingCar" style="cursor: pointer" onclick="addTOShoppingCar()">加入购物车</button>
+            </div>
+
+            <div id="电风扇" class="items" price="600">
+              <img src="../image/电风扇.png">
+              <div class="价格" >价格：600元</div>
+              <button class="ButtonOfAddTOShoppingCar" style="cursor: pointer" onclick="addTOShoppingCar()">加入购物车</button>
+            </div>
+
+            <div id="热水壶" class="items" price="250">
+              <img src="../image/热水壶.png">
+              <div class="价格" >价格：250元</div>
+              <button class="ButtonOfAddTOShoppingCar" style="cursor: pointer" onclick="addTOShoppingCar()">加入购物车</button>
+            </div>
+
           </div>
   
           <div id="myBill">
-            
+            <div id="myBillword">我的历史订单 <img src="../image/历史订单.png" align="top" id="历史订单"></div>
           </div>
         </div>
       </div>
 
     </body>
 </html>
+    <script type="text/javascript" src="主页.js"></script>

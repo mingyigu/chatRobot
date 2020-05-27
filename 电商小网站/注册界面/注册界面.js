@@ -31,6 +31,8 @@ function register() {
                     alert(response);
                     alert("注册成功");
                     //附带用户信息，跳转页面到主页
+                    var res = JSON.parse(this.responseText);
+                    alert(res,res.data);
                     toLogin();
                 }
             }
