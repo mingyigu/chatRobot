@@ -14,26 +14,30 @@ function register() {
         input3.value = "";
     }
     else{
+        
         var username = input1.value;
         var password = input2.value;
-        var massage = "register" + " " + username + " " + password;
+        var massage = {
+            type:"register",
+            username:username,
+            password:password,
+        }
         
         //获取用户信息后进行Ajax交互,在服务器端保留用户信息
         var xml = new XMLHttpRequest();
         xml.open("post","url",true);
         xml.setRequestHeader("Content-Type", "application/json");
-        xml.send(JSON.stringify({'data':massage}));
+        xml.send(JSON.stringify(massage));
         xml.onreadyStatechage = function (){
             if(this.readyState == 4) {
                 console.log("交互已经完成");
                 if(this.status == 200) {
-                    var response = this.responseText;
-                    alert(response);
-                    alert("注册成功");
-                    //附带用户信息，跳转页面到主页
-                    var res = JSON.parse(this.responseText);
-                    alert(res,res.data);
-                    toLogin();
+                    var response = JSON.parse(this.responseText);
+                    if(response == "success") {
+                        alert("注册成功");
+                        toLogin();
+                    }
+                    
                 }
             }
         }

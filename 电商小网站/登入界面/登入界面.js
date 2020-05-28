@@ -15,20 +15,29 @@ function login() {
     var input2 = document.getElementById("password");
     var username = input1.value;
     var password = input2.value;
-    var massage = "login" + " " + username + " " + password;
-
+    var massage ={
+        type:"login",
+        username:username,
+        password:password,
+    }
     //进行Ajax交互，确认用户信息的正确性，若正确则页面跳转到主页。
     var xml = new XMLHttpRequest();
-    xml.open("poat","url",true);
+    xml.open("post","url",true);
     xml.setRequestHeader("Content-Type", "application/json");
-    xml.send(JSON.stringify({'data':massage}));
+    xml.send(JSON.stringify(massage));
     xml.onreadystatechange = function () {
         if(this.readyState == 4) {
             console.log("交互已经完成");
             if(this.status == 200) {
-                var response = this.responseText;
-                alert(response);
-                location.href="../主页/主页.html?"+"username="+encodeURI(username);
+                var response = JSON.parse(this.responseText);
+                if(response == "success") {
+                    alert("登入成功")；
+                    location.href="../主页/主页.html?"+"username="+encodeURI(username);
+                }
+                else{
+                    alert("登入失败");
+                }
+                
             }
         }
     }
