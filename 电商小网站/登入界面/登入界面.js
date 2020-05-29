@@ -29,13 +29,16 @@ function login() {
         if(this.readyState == 4) {
             console.log("交互已经完成");
             if(this.status == 200) {
-                var response = JSON.parse(this.responseText);
+                var response = this.responseText;
                 if(response == "success") {
-                    alert("登入成功")；
+                    alert("登入成功");
                     location.href="../主页/主页.html?"+"username="+encodeURI(username);
                 }
-                else{
-                    alert("登入失败");
+                else if(response == "null"){
+                    alert("用户不存在");
+                }
+                else if(response == "error") {
+                    alert("密码错误");
                 }
                 
             }

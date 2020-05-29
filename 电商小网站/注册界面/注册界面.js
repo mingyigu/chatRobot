@@ -32,10 +32,13 @@ function register() {
             if(this.readyState == 4) {
                 console.log("交互已经完成");
                 if(this.status == 200) {
-                    var response = JSON.parse(this.responseText);
+                    var response = this.responseText;
                     if(response == "success") {
                         alert("注册成功");
                         toLogin();
+                    }
+                    else{
+                        alert("该用户已存在");
                     }
                     
                 }

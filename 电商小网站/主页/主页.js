@@ -1,4 +1,5 @@
 var count = 0; //购物车中的商品种类
+var sumPrice = 0;//购物车中的所有选中商品的价格
 function deletediv() {
     var x = document.getElementById("div1");
     var shoppingCar = document.getElementById("shoppingCar");
@@ -46,26 +47,33 @@ function addTOShoppingCar() {
     var item = document.getElementById(newId);
     item.className = "item";
     item.setAttribute("num",1);
+    item.setAttribute("check",-1);
+    item.setAttribute("price",document.getElementById(id).getAttribute("price"));
     
-    //给div添加商品图片和文字
-    var imgAndWord = document.createElement("div");
-    imgAndWord.className = "imgAndWord"
-    item.appendChild(imgAndWord)
-    var word = document.createElement("span");
-    word.innerText = id;
-    imgAndWord.appendChild(word);
+    //给div添加选择健和商品图片
+    var buttonAndImage = document.createElement("div");
+    buttonAndImage.className = "buttonAndImage"
+    item.appendChild(buttonAndImage);
+    var checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.addEventListener("click",function() {
+        var clickedNode = event.target;
+        var item = clickedNode.parentNode.parentNode;
+        item.setAttribute("check",-Number(item.getAttribute("check")));
+    })
+    buttonAndImage.appendChild(checkbox);
     var img = document.createElement("img");
     img.src="../image/" + id + ".png"
-    imgAndWord.appendChild(img);
+    buttonAndImage.appendChild(img);
     img.className = "imgInShoppingCar";
     
     //给商品添加单价
     var price = document.createElement("div");
-    price.innerText = "单价：" +   document.getElementById(id).getAttribute("price")
+    price.innerText = id +  "\n¥" +   document.getElementById(id).getAttribute("price")
     price.className = "priceInShoppingCar";
     item.appendChild(price);
 
-    //给div添加商品数量，以及加减图标
+    //给div添加商品数量，以及加减图标,同时绑定加减功能
     var itemNum = document.createElement("div");
     itemNum.className = "itemNum";
     item.appendChild(itemNum);
@@ -112,23 +120,53 @@ function addTOShoppingCar() {
             num.innerText = item.getAttribute("num");
         }
         
-    })
+    })  
 
+    
     //在末尾加入结算的按钮和文字;
     var account = document.createElement("div");
     account.id = "accountDiv";
     shoppingCar.appendChild(account);
-    var accountWord = document.createElement("span");
-    accountWord.innerText = "结算:";
-    account.appendChild(accountWord);
-    var accountImg = document.createElement("img");
-    accountImg.src = "../image/结算.png";
-    account.appendChild(accountImg);
-    accountImg.style.cursor = "pointer";
-    accountImg.className = "accountImg";
 
+    var accountButton = document.createElement("button");
+    accountButton.className =  'accountButton';
+    accountButton.innerText = "结算";
+    accountButton.style.cursor = "pointer";
+    accountButton.addEventListener("click",accountSumFuc);
+    account.appendChild(accountButton);
+
+    var accountWord = document.createElement("div");
+    accountWord.className = "accountWord";
+    accountWord.innerText = "合计:";
+    account.appendChild(accountWord);
+    
     
 }
 
-var x = document.getElementById("沙发");
+//结算购物车中选择的商品
+function accountSumFuc() {
+    var shoppingCar = document.getElementById("shoppingCar");
+    var len = shoppingCar.childElementCount + 1;
+    var chlids = shoppingCar.childNodes;
+    var num = [];
+    for(var i = 0; i < len; i++ ) {
+        if(chlids[i].className && chlids[i].className == "item"){
+            if(Number(chlids[i].getAttribute("check")) == 1){
+                num.push(chlids[i].id);
+                //chlids[i].parentNode.removeChild(chlids[i]);
+                //sumPrice += Number(chlids[i].getAttribute("price")) * Number(chlids[i].getAttribute("num"));
+            }
+        }
+    }
+    console.log(num);
+    for(var i = 0; i < num.length; i++) {
+        var x = document.getElementById(num[i]);
+        sumPrice += Number(x.getAttribute("price")) * Number(x.getAttribute("num"));
+        x.parentNode.removeChild(x);
+    }
+    alert(sumPrice);
+    sumPrice = 0;
+}
+
+
 //alert(x.getAttribute("price"));

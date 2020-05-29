@@ -1,8 +1,16 @@
 #myshoppingcar {
+    width: 99%;
+    height: 50px;
     font-size: 35px;
     font-family: 'Times New Roman', Times, serif;
     color: black;
     font-weight: 600;
+    display: flex;
+    justify-content: center;
+    background-color: #f2bb7e;
+    border-width:1px;
+    border-style:solid;
+    border-color: #f1b065;
 }
 
 #购物车 {
@@ -11,24 +19,23 @@
 }
 
 .item {
-    margin-bottom: 10px;
-    border-radius: 10px;
-    border:cornflowerblue;
-    background-color: mediumturquoise;
-    border-width:7px;
+    background-color: #fdfcf1;
+    border-width:1px;
     border-style:solid;
+    border-color: #e7e5cb;
     display: flex;
-    flex-direction: column;
+    width: 99%;
+    flex-direction: row;
     align-items:center;
-    width: 95%;
-    height: 150px;
+    height: 100px;
 }
 
-.imgAndWord {
+.buttonAndImage {
     display: flex;
-    width: 100%;
+    width: 80px;
     height: 60px;
     justify-content: center;
+    align-items:center;
     font-size: 30px;
     font-weight: 600;
 }
@@ -41,16 +48,19 @@
 }
 
 .priceInShoppingCar {
-    height: 30px;
-    font-size: 20px;
+    display: block;
+    height: 60px;
+    width:125px;
+    font-size: 15px;
     color: cornflowerblue;
     font-weight: 400;
     font-family: fantasy;
+    margin-top: 20px;
 }
 
 .itemNum {
     margin-top: 5px;
-    width: 100%;
+    width: 90px;
     display: flex;
     flex-flow: row-reverse;
     align-items:center;
@@ -69,28 +79,29 @@
 
 #accountDiv{
     display:flex;
-    flex-direction: row;
-    justify-content:flex-end;
     width: 100%;
-    font-size: 22px;
-    font-weight: 500;
-    color: rgb(105, 160, 241);
+    height: 80px;
+    font-size: 14px;
+    flex-direction: row-reverse;
+    color: #757575;
 }
 
-.accountImg{
-    width: 30px;
-    height: 30px;
+.accountWord {
+    margin-top:  5px;
     margin-right: 10px;
-    margin-left: 3px;
 }
-
-
-
-
-
-
-
-
+.accountButton {
+    display:flex;
+    width: 70px;
+    height: 30px;
+    border-radius: 15px;
+    font-size: 15px;
+    background-color: #ff6b09;
+    color: white;
+    border:none;
+    align-items:center;
+    justify-content: center;
+}
 
 
 
