@@ -7,6 +7,7 @@
     font-weight: 600;
     display: flex;
     justify-content: center;
+    align-items: center;
     background-color: #f2bb7e;
     border-width:1px;
     border-style:solid;
@@ -86,7 +87,7 @@
     color: #757575;
 }
 
-.accountWord {
+#accountWord {
     margin-top:  5px;
     margin-right: 10px;
 }

@@ -6,15 +6,7 @@ function deletediv() {
     x.parentNode.removeChild(x);
 }
 
-function appenddiv() {
-    var divi =  document.createElement("div" + count); 
-    var shoppingCar = document.getElementById("shoppingCar");
-    shoppingCar.appendChild(divi);
-    divi.style.width = "100px";
-    divi.style.height = "100px";
-    divi.style.backgroundColor = "#ffffcc";
 
-}
 
 //在购物车内创建id为“(物品)InShoppingCar的div元素”
 function addTOShoppingCar() {
@@ -30,6 +22,10 @@ function addTOShoppingCar() {
         item.setAttribute("num",+item.getAttribute("num") + 1);
         var num = document.getElementById(item.id + "Num");
         num.innerText = item.getAttribute("num");
+        if(item.getAttribute("check") == 1) {
+            sumPrice += Number(item.getAttribute("price"));
+            document.getElementById("accountWord").innerText = "合计: ¥" + sumPrice;
+        }
         return;
     }
     count++;
@@ -60,6 +56,13 @@ function addTOShoppingCar() {
         var clickedNode = event.target;
         var item = clickedNode.parentNode.parentNode;
         item.setAttribute("check",-Number(item.getAttribute("check")));
+        if(Number(item.getAttribute("check")) == 1){
+            sumPrice += Number(item.getAttribute("price")) * Number(item.getAttribute("num"));
+        }
+        else {
+            sumPrice -= Number(item.getAttribute("price")) * Number(item.getAttribute("num"));
+        }
+        document.getElementById("accountWord").innerText = "合计: ¥" + sumPrice;
     })
     buttonAndImage.appendChild(checkbox);
     var img = document.createElement("img");
@@ -89,6 +92,10 @@ function addTOShoppingCar() {
         item.setAttribute("num",+item.getAttribute("num") + 1);
         var num = document.getElementById(item.id + "Num");
         num.innerText = item.getAttribute("num");
+        if(item.getAttribute("check") == 1){
+            sumPrice += Number(item.getAttribute("price"));
+            document.getElementById("accountWord").innerText = "合计: ¥" + sumPrice;
+        }
     })
 
     var num = document.createElement("div");
@@ -114,10 +121,15 @@ function addTOShoppingCar() {
                 var account = document.getElementById("accountDiv");
                 account.parentNode.removeChild(account);
             }
+            return;
         }
         else{
             var num = document.getElementById(item.id + "Num");
             num.innerText = item.getAttribute("num");
+        }
+        if(item.getAttribute("check") == 1 ) {
+            sumPrice -= Number(item.getAttribute("price"));
+            document.getElementById("accountWord").innerText = "合计: ¥" + sumPrice;
         }
         
     })  
@@ -136,8 +148,8 @@ function addTOShoppingCar() {
     account.appendChild(accountButton);
 
     var accountWord = document.createElement("div");
-    accountWord.className = "accountWord";
-    accountWord.innerText = "合计:";
+    accountWord.id = "accountWord";
+    accountWord.innerText = "合计: ¥0";
     account.appendChild(accountWord);
     
     
@@ -161,11 +173,27 @@ function accountSumFuc() {
     console.log(num);
     for(var i = 0; i < num.length; i++) {
         var x = document.getElementById(num[i]);
-        sumPrice += Number(x.getAttribute("price")) * Number(x.getAttribute("num"));
+        //sumPrice += Number(x.getAttribute("price")) * Number(x.getAttribute("num"));
         x.parentNode.removeChild(x);
+        count--;
+    }
+    if(count == 0) {
+        var account = document.getElementById("accountDiv");
+        account.parentNode.removeChild(account);
     }
     alert(sumPrice);
     sumPrice = 0;
+}
+
+//切换用户
+function userSwitch() {
+    location.href="../登入界面/登入界面.html";
+}
+
+
+//生成历史订单
+function generateOrder(time,item,num,price){
+    return
 }
 
 
