@@ -2,7 +2,7 @@
     display: grid;
     grid-template-columns: repeat(8,12%);
     grid-template-rows: repeat(5,20%);
-    width: 100.4%;
+    width: 99.9%;
     height: 250%;
     grid-column-gap: 8px;
     grid-row-gap: 10px;
@@ -22,6 +22,8 @@
     grid-template-columns: repeat(8,12%);
     grid-template-rows: repeat(2,50%);
 }
+
+
 
 #body {
     grid-column-start: 1;
